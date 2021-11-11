@@ -3,7 +3,7 @@
 class samba::server::install {
   if fact('os.family') == 'Debian' {
     apt::source { 'samba':
-      location => 'https://apt.van-belle.nl/debian buster-samba413',
+      location => "https://apt.van-belle.nl/debian ${facts['lsbdistcodename']}-samba413",
       release  => 'main contrib non-free',
       repos    => '',
       key      => {
