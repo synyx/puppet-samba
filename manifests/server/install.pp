@@ -2,13 +2,13 @@
 #
 class samba::server::install {
   if fact('os.family') == 'Debian' {
-    if versioncmp($::operatingsystemrelease, '11') >= 0 {
+    if versioncmp($facts['os']['release']['full'], '11') >= 0 {
       apt::source { 'samba':
         ensure => absent,
       }
     } else {
       apt::source { 'samba':
-        location => "https://apt.van-belle.nl/debian ${facts['lsbdistcodename']}-samba413",
+        location => "https://apt.van-belle.nl/debian ${facts['os']['distro']['codename']}-samba413",
         release  => 'main contrib non-free',
         repos    => '',
         key      => {
